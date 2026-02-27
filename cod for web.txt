@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Smart Gadget Hub - Amazon Affiliate</title>
+
+<style>
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    background: #f4f4f4;
+}
+
+header {
+    background: #111;
+    color: white;
+    padding: 15px;
+    text-align: center;
+}
+
+nav {
+    background: #222;
+    padding: 10px;
+    text-align: center;
+}
+
+nav a {
+    color: white;
+    margin: 10px;
+    text-decoration: none;
+}
+
+.container {
+    padding: 20px;
+}
+
+.products {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+.card {
+    background: white;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    text-align: center;
+}
+
+.card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+button {
+    background: #ff9900;
+    border: none;
+    padding: 10px;
+    color: white;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-top: 10px;
+}
+
+button:hover {
+    background: #e68a00;
+}
+
+/* Voice Assistant Button */
+#voiceBtn {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: #007bff;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    font-size: 24px;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+<h1>Smart Gadget Hub</h1>
+<p>Best Amazon Deals & Reviews</p>
+</header>
+
+<nav>
+<a href="#">Home</a>
+<a href="#">Reviews</a>
+<a href="#">Blog</a>
+<a href="#">Contact</a>
+</nav>
+
+<div class="container">
+<h2>Featured Products</h2>
+
+<div class="products" id="productList">
+
+<div class="card">
+<img src="https://via.placeholder.com/300x200">
+<h3>Smart Watch</h3>
+<p>Best budget smartwatch with fitness tracking.</p>
+<a href="YOUR_AMAZON_AFFILIATE_LINK" target="_blank">
+<button>Check Price on Amazon</button>
+</a>
+</div>
+
+<div class="card">
+<img src="https://via.placeholder.com/300x200">
+<h3>Wireless Earbuds</h3>
+<p>Noise cancellation + long battery life.</p>
+<a href="YOUR_AMAZON_AFFILIATE_LINK" target="_blank">
+<button>Check Price on Amazon</button>
+</a>
+</div>
+
+<div class="card">
+<img src="https://via.placeholder.com/300x200">
+<h3>Bluetooth Speaker</h3>
+<p>Powerful bass with waterproof design.</p>
+<a href="YOUR_AMAZON_AFFILIATE_LINK" target="_blank">
+<button>Check Price on Amazon</button>
+</a>
+</div>
+
+</div>
+</div>
+
+<!-- Voice Assistant Button -->
+<button id="voiceBtn">🎤</button>
+
+<script>
+const voiceBtn = document.getElementById("voiceBtn");
+
+voiceBtn.addEventListener("click", function() {
+    const recognition = new(window.SpeechRecognition || window.webkitSpeechRecognition)();
+    recognition.start();
+
+    recognition.onresult = function(event) {
+        const command = event.results[0][0].transcript.toLowerCase();
+        alert("You said: " + command);
+
+        if(command.includes("watch")) {
+            speak("Showing smart watch product.");
+        }
+        else if(command.includes("earbuds")) {
+            speak("Showing wireless earbuds.");
+        }
+        else {
+            speak("Sorry, product not found.");
+        }
+    };
+});
+
+function speak(text) {
+    const speech = new SpeechSynthesisUtterance(text);
+    speech.lang = "en-US";
+    window.speechSynthesis.speak(speech);
+}
+</script>
+
+</body>
+</html>
